@@ -28,12 +28,12 @@ class Search extends Component {
     }
   };
 
-  // handleClickSearchButton = async () => {
-  //   this.setState({ loading: true, searchFound: false });
-  //   const { pesquisa } = this.state;
-  //   this.setState({ pesquisa: '' });
+  handleClickSearchButton = async () => {
+    this.setState({ loading: true, searchFound: false });
+    const { pesquisa } = this.state;
+    this.setState({ pesquisa: '' });
 
-  //   const response = await searchAlbumsAPI(pesquisa);
+    const response = await searchAlbumsAPI(pesquisa);
 
     this.setState({
       loading: false,
