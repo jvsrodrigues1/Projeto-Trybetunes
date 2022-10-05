@@ -22,7 +22,7 @@ class MusicCard extends Component {
           O seu navegador não suporta o elemento
           <code>audio</code>
           .
-        {/* </audio>
+        </audio>
         <label htmlFor="favorita">
           Favorita
           <input
@@ -34,7 +34,7 @@ class MusicCard extends Component {
             checked={ arrayFavoritas.includes(trackId) }
           />
         </label>
-      </div> */}
+      </div>
     );
   }
 }
