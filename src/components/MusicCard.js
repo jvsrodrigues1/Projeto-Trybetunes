@@ -8,7 +8,7 @@ class MusicCard extends Component {
       previewUrl,
       trackId,
       onFavoriteChange,
-      arrayFavoritas,
+      arrayFavoriteSongs,
     } = this.props;
     return (
       <div>
@@ -31,7 +31,7 @@ class MusicCard extends Component {
             name="favorita"
             id="favorita"
             onChange={ onFavoriteChange }
-            checked={ arrayFavoritas.includes(trackId) }
+            checked={ arrayFavoriteSongs.includes(trackId) }
           />
         </label>
       </div>
@@ -44,7 +44,7 @@ MusicCard.propTypes = {
   previewUrl: PropTypes.string,
   trackId: PropTypes.number,
   onFavoriteChange: PropTypes.func,
-  arrayFavoritas: PropTypes.array,
+  arrayFavoriteSongs: PropTypes.array,
 }.isRequired;
 
 export default MusicCard;

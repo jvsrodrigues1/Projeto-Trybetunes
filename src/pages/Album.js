@@ -12,32 +12,32 @@ class Album extends Component {
     album: '',
     musicas: [],
     loading: false,
-    arrayFavoritas: [],
+    arrayFavoriteSongs: [],
   };
 
   async componentDidMount() {
     const { match: { params: { id } } } = this.props;
-    const faixas = await getMusics(id);
-    const favoritadas = await getFavoriteSongs();
-    const { artistName, collectionName } = faixas[0];
+    const musics = await getMusics(id);
+    const getFavorites = await getFavoriteSongs();
+    const { artistName, collectionName } = musics[0];
     this.setState({
       artista: artistName,
       album: collectionName,
-      musicas: faixas.slice(1),
-      arrayFavoritas: favoritadas.map((favoritada) => favoritada.trackId),
+      musicas: musics.slice(1),
+      arrayFavoriteSongs: getFavorites.map((favoritada) => favoritada.trackId),
     });
   }
 
   handleFavoriteSong = async (song) => {
-    const { arrayFavoritas } = this.state;
+    const { arrayFavoriteSongs } = this.state;
     this.setState({ loading: true });
     await addSong(song);
-    if (arrayFavoritas.includes(song.trackId)) {
+    if (arrayFavoriteSongs.includes(song.trackId)) {
       this.setState({ loading: false });
     } else {
       this.setState({
         loading: false,
-        arrayFavoritas: [...arrayFavoritas, song.trackId],
+        arrayFavoriteSongs: [...arrayFavoriteSongs, song.trackId],
       });
     }
   };
@@ -48,7 +48,7 @@ class Album extends Component {
       album,
       musicas,
       loading,
-      arrayFavoritas,
+      arrayFavoriteSongs,
     } = this.state;
     return (
       <div>
@@ -64,7 +64,7 @@ class Album extends Component {
                   key={ musica.trackId }
                   { ...musica }
                   onFavoriteChange={ () => this.handleFavoriteSong(musica) }
-                  arrayFavoritas={ arrayFavoritas }
+                  arrayFavoriteSongs={ arrayFavoriteSongs }
                 />),
             )}
           </div>
